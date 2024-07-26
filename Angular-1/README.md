@@ -1,6 +1,42 @@
 # Angular1
 
-# Basic File Structure
+## Basic File Structure
+
+- `.editorconfig`: Configuration for code editors. EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs.
+- `.gitignore`: Specifies intentionally untracked files that Git should ignore.
+- `README.md`: Documentation of the workspace.
+- `angular.json`: the root level of an Angular workspace provides workspace-wide and project-specific configuration defaults. These are used for build and development tools provided by the Angular CLI.
+  - a few properties configure the workspace and a `projects` section contains the remaining per-project configuration options.
+  - `version`: The configuration-file version.
+  - `newProjectRoot`: Path where new projects are created through tools like `ng generate application` or `ng generate library`. Path can be absolute or relative to the workspace directory. Defaults to `projects`, i.e all the `ng generate application` are added to `projects` array.
+  - `projects`: Contains a subsection for each application or library in the workspace, with project-specific configuration options. - `root`: The root directory for this project's files, relative to the workspace directory. Empty for the initial application, which resides at the top level of the workspace.
+  - `projectType`: One of "application" or "library" An application can run independently in a browser, while a library cannot.
+  - `sourceRoot`: The root directory for this project's source files.
+  - `prefix`: A string that Angular prepends to selectors when generating new components, directives, and pipes using ng generate. Can be customized to identify an application or feature area.
+  - `architect`: Configuration defaults for Architect builder targets for this project.
+    - `build`: Configures defaults for options of the `ng build` command.
+    - `serve`: Overrides build defaults and supplies extra serve defaults for the `ng serve` command. Besides the options available for the `ng build` command, it adds options related to serving the application.
+- `package.json`: Configures npm package dependencies that are available to all projects in the workspace.
+- `package-lock.json`: lock.json Provides version information for all packages installed into `node_modules` by the npm client.
+- `tsconfig.json`: The base TypeScript configuration for projects in the workspace. All other configuration files inherit from this base file.
+- `tsconfig.app.json`: Application-specific TypeScript configuration, including Angular compiler options.
+- `tsconfig.spec.json`: TypeScript configuration for application tests.
+- `src`: Source files for the root-level application project.
+
+  - `assets`: static resources like images, icons, text files. Publicly accessible.
+  - `favicon.ico`: An icon to use for this application in the bookmark bar.
+  - `index.html`: The main HTML page that is served when someone visits your site. The CLI automatically adds all JavaScript and CSS files when building your app, so you typically don't need to add any `script` or `link` tags here manually.
+  - `main.ts`: The main entry point for your application.
+  - `styles.css`: global CSS styles to the application
+  - `app/`: Contains the component files in which your application logic and data are defined.
+
+    - `app.config.ts`: Defines the application configuration that tells Angular how to assemble the application. As you add more providers to the app, they should be declared here. Only generated when using the --standalone option
+    - `app.component.ts`: Defines the application's root component, named AppComponent. The view associated with this root component becomes the root of the view hierarchy as you add components and services to your application.
+    - `app.component.html`: Defines the HTML template associated with AppComponent.
+    - `app.component.css`: Defines the CSS stylesheet for AppComponent.
+    - `app.component.spec.ts`: Defines a unit test for AppComponent.
+    - `app.module.ts`:Defines the root module, named AppModule, that tells Angular how to assemble the application. Initially declares only the AppComponent. As you add more components to the app, they must be declared here. Only generated when using the --standalone false option.
+    - `app.routes.ts`: Defines the application's routing configuration.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
