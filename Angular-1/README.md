@@ -38,6 +38,19 @@
     - `app.module.ts`:Defines the root module, named AppModule, that tells Angular how to assemble the application. Initially declares only the AppComponent. As you add more components to the app, they must be declared here. Only generated when using the --standalone false option.
     - `app.routes.ts`: Defines the application's routing configuration.
 
+## Execution Flow
+
+- `angular.json`: the builder looks for `main` attribute in the `options` object, under `build` object, which tells the builder about the entry point of the application.
+- `main.ts`: This file acts as the entry point of the application. `main.ts` helps in creating the browser environment for the application to run. In case entry point needs to point to different file then filename should be modified in `angular.json` & `tsconfig.app.json`. After this, `main.ts` file calls the function `bootstrapModule`(AppModule) which tells the builder to bootstrap the app.
+- `app.module.ts`: From the main.ts file, it is very clear that we are bootstrapping the app with `AppModule`. This is the module, created with the `@NgModule` decorator, which has declarations of all the components we are creating within the app module so that angular is aware of them, and provide bootstrapping component.
+- `app.component.ts`: Defines the application's root component, named AppComponent. The view associated with this root component becomes the root of the view hierarchy as you add components and services to your application. And builder replaces the selector of this component with the html template.
+- `index.html`: When this angular app is served and opened in the browser, the scripts injection is done by the compiler. these scripts are:
+  - `runtime.js`: webpack runtime file
+  - `polyfills.js`: compatible with old browser
+  - `main.ts`: application code compiled to JavaScript
+  - `vendor.js`: contains angular core library & third party library.
+  - `style.js`: style.css is bundled to style.js & injected to index.html
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
 ## Development server
